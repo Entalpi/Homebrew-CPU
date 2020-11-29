@@ -1,0 +1,63 @@
+# Homebrew-CPU
+
+## RAM
+
+## Register file
+
+## ALU
+
+## FPU
+
+## Pipeline
+
+## Instruction set architecture (ISA)
+
+All instructions are given in big endianness (most significant bit to the left)
+
+Full ISA
+
+| Name    | Encoding                         | Description                                                             | Implemented |
+|---------+----------------------------------+-------------------------------------------------------------------------+-------------|
+| nop     | [OP:0000]                        | No operation - does nothing                                             |             |
+| add     | [OP:0001, ADD:0, R0:4, R1:4]     | Addition of values in register R0 and R1 result stored in R0            |             |
+| addi    | [OP:0001, ADD:1, R0:4, IMM:7]    | Addition of value *IMM* to value in register R0                         |             |
+| sub     | [OP:0010, SUB:0, R0:4, R1:4]     | Subtraction of values in register R0 and R1 result stored in R0         |             |
+| subi    | [OP:0010, SUB:1, R0:4, IMM:7]    | Subtraction of value *IMM* to value in register R0                      |             |
+| mul     | [OP:0011, MUL:0, R0:4, R1:4]     | Multiplication of values in register R0 and R1 result stored in R0      |             |
+| muli    | [OP:0011, MUL:1, R0:4, IMM:7]    | Multiplication of values in register R0 and R1 result stored in R0      |             |
+| div     | [OP:0100, DIV:0, R0:4, R1:4]     | Division of values in register R0 / R1 result stored in R0              |             |
+| divi    | [OP:0100, DIV:1, R0:4, IMM:7]    | Division of value in register R0 / IMM result stored in R0              |             |
+| load    | [OP:0101, R0:4, R1:4]            | Load the address located in register R0 into R1                         |             |
+| store   | [OP:0110, R0:4, R1:4]            | Store the address located in register R0 into R1                        |             |
+| jmp     | [OP:0111, JMP:0, R0:4]           | Sets the program counter to the value of register R0                    |             |
+| jmpi    | [OP:0111, JMP:1, IMM:11]         | Adds the signed 11-bit value *IMM* to the PC                            |             |
+| br      | [OP:1000, IMM:12]                | Conditional jump (branch) by signed 11-bit value *IMM* to the PC        |             |
+| shiftr  | [OP:1001, SHIFT:0, R0:4, R1:4]   | Shift right value of register R0 by the signed value of R1 stored in R0 |             |
+| shiftl  | [OP:1001, SHIFT:1, R0:4, R1:4]   | Shift left value of register R0 by the signed value of R1 stored in R0  |             |
+| and     | [OP:1010, LOGIC:00, R0:4, R1:4]  | Logical AND operation of values in R0 and R1 stored in R0               |             |
+| not     | [OP:1010, LOGIC:01, R0:4, R1:4]  | Logical NOT operation of values in R0 and R1 stored in R0               |             |
+| or      | [OP:1010, LOGIC:10, R0:4, R1:4]  | Logical OR operation of values in R0 and R1 stored in R0                |             |
+| xor     | [OP:1010, LOGIC:11, R0:4, R1:4]  | Logical XOR operation of values in R0 and R1 stored in R0               |             |
+| cpy     | [OP:1011, CPY:0, R0:4, R1:4]     | Copies the content of register R1 to the register R1                    |             |
+| cpyi    | [OP:1011, CPY:1, R0:4, IMM:7]    | Copies the value IMM to the register R0                                 |             |
+| cmpeq   | [OP:1100, CMP:0000, R0:4, R1:4]  | Sets the compare flag to 1 if R0 == R1                                  |             |
+| cmpl    | [OP:1100, CMP:0001, R0:4, R1:4]  | Sets the compare flag to 1 if R0 <  R1                                  |             |
+| cmpleq  | [OP:1100, CMP:0010, R0:4, R1:4]  | Sets the compare flag to 1 if R0 <= R1                                  |             |
+| cmpg    | [OP:1100, CMP:0011, R0:4, R1:4]  | Sets the compare flag to 1 if R0 >  R1                                  |             |
+| cmpgeq  | [OP:1100, CMP:0100, R0:4, R1:4]  | Sets the compare flag to 1 if R0 >= IMM                                 |             |
+| cmpieq  | [OP:1100, CMP:0101, R0:4, IMM:7] | Sets the compare flag to 1 if R0 == IMM                                 |             |
+| cmpil   | [OP:1100, CMP:0111, R0:4, IMM:7] | Sets the compare flag to 1 if R0 <  IMM                                 |             |
+| cmpileq | [OP:1100, CMP:1000, R0:4, IMM:7] | Sets the compare flag to 1 if R0 <= IMM                                 |             |
+| cmpig   | [OP:1100, CMP:1001, R0:4, IMM:7] | Sets the compare flag to 1 if R0 >  IMM                                 |             |
+| cmpigeq | [OP:1100, CMP:1010, R0:4, IMM:7] | Sets the compare flag to 1 if R0 >= IMM                                 |             |
+|---------+----------------------------------+-------------------------------------------------------------------------+-------------|
+
+# Pseudo instructions
+mov?
+movi?
+call, ret???
+push,  pop????
+sub = add r0, -r1
+subi = addi r0, -r1
+call = set the pc and push args?
+ret = set the pc and pop args?
